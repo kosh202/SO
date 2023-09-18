@@ -1,54 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//define tamanho max pra um bloco estatico
-#define TAMANHO_MAX 100000
-static char bloco_de_memoria[TAMANHO_MAX];
+//define t max pra um bloco estatico
+#define t_MAX 100000
+static char bloco_de_memoria[t_MAX];
 
 typedef struct BlocoDeMemoria {
-    size_t tamanho;
-    struct BlocoDeMemoria *proximo;
+    size_t t;
+    struct BlocoDeMemoria *prox;
 } BlocoDeMemoria;
 
 static BlocoDeMemoria *bloco_livre = NULL;
 
 void *aloca(size_t size) {
-    if (size <= 0 || size > TAMANHO_MAX) {
-        return NULL; // Verificação de tamanho inválido
+    if (size <= 0 || size > t_MAX) {
+        return NULL; // Verificação de t inválido
     }
 
   
     if (bloco_livre == NULL) {
         bloco_livre = (BlocoDeMemoria *)bloco_de_memoria;
-        bloco_livre->tamanho = TAMANHO_MAX - sizeof(BlocoDeMemoria);
-        bloco_livre->proximo = NULL;
+        bloco_livre->t = t_MAX - sizeof(BlocoDeMemoria);
+        bloco_livre->prox = NULL;
     }
 
     BlocoDeMemoria *atual = bloco_livre;
     BlocoDeMemoria *anterior = NULL;
 
     while (atual) {
-        if (atual->tamanho >= size) {
+        if (atual->t >= size) {
             void *ptr = (char *)atual + sizeof(BlocoDeMemoria);
-            if (atual->tamanho > size + sizeof(BlocoDeMemoria)) {
+            if (atual->t > size + sizeof(BlocoDeMemoria)) {
                 // Divide o bloco se houver espaço suficiente
                 BlocoDeMemoria *novo_bloco = (BlocoDeMemoria *)((char *)atual + size + sizeof(BlocoDeMemoria));
-                novo_bloco->tamanho = atual->tamanho - size - sizeof(BlocoDeMemoria);
-                novo_bloco->proximo = atual->proximo;
-                atual->tamanho = size;
-                atual->proximo = novo_bloco;
+                novo_bloco->t = atual->t - size - sizeof(BlocoDeMemoria);
+                novo_bloco->prox = atual->prox;
+                atual->t = size;
+                atual->prox = novo_bloco;
             } else {
                 // Remove o bloco livre da lista
                 if (anterior == NULL) {
-                    bloco_livre = atual->proximo;
+                    bloco_livre = atual->prox;
                 } else {
-                    anterior->proximo = atual->proximo;
+                    anterior->prox = atual->prox;
                 }
             }
             return ptr;
         }
         anterior = atual;
-        atual = atual->proximo;
+        atual = atual->prox;
     }
 
     return NULL; // Não há memória disponível
@@ -61,7 +61,7 @@ void libera(void *ptr) {
 
     // Encontre o bloco de memória correspondente
     BlocoDeMemoria *bloco = (BlocoDeMemoria *)((char *)ptr - sizeof(BlocoDeMemoria));
-    bloco->proximo = bloco_livre;
+    bloco->prox = bloco_livre;
     bloco_livre = bloco;
 }
 
