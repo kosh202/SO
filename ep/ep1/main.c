@@ -79,9 +79,9 @@ int main(void) {
     }
 
     *ptr1 = 42;
-    *ptr2 = 100;
+    *ptr2 = 50;
 
-    printf("Valor 1: %d\n", *ptr1);
+    printf("Valor 1: %d\n", ptr1);
     printf("Valor 2: %d\n", *ptr2);
 
     // Libera a memória alocada
