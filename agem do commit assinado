@@ -1,0 +1,61 @@
+[33mcommit c793058d9e0e06138b2cdaaf5acbf9fe1a842fbf[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+[36mgpg: Signature made Fri, Oct  6, 2023  1:55:50 AM    [m
+[36mgpg:                using RSA key 5A6EFC93A0966ED3640880A468A6682F97740A3E[m
+[36mgpg: Good signature from "Raphael Shodi Kawahara (gpg) <raphael.s.k@hotmail.com>" [ultimate][m
+Author: Raphael Shodi <raphael.s.k@hotmail.com>
+Date:   Fri Oct 6 01:55:49 2023 -0300
+
+    adicionando ep2
+
+[33mcommit 0462e96054395e3efe3753a48779fb2f6feba14b[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+[41mgpg: Signature made Mon, Sep 18, 2023  1:57:56 AM    [m
+[41mgpg:                using RSA key D0AA7F0BF313EA6147EDBDFF65CF2F615E660FE0[m
+[41mgpg: Good signature from "Raphael Shodi (test) <raphael.s.k@hotmail.com>" [expired][m
+[41mgpg: Note: This key has expired![m
+[41mPrimary key fingerprint: D0AA 7F0B F313 EA61 47ED  BDFF 65CF 2F61 5E66 0FE0[m
+Author: Raphael Shodi <raphael.s.k@hotmail.com>
+Date:   Mon Sep 18 01:57:50 2023 -0300
+
+    ultimas mudanças
+
+[33mcommit 4e12714710723a6bfd40ba3074f49a244ac88313[m
+[41mgpg: Signature made Mon, Sep 18, 2023  1:11:09 AM    [m
+[41mgpg:                using RSA key D0AA7F0BF313EA6147EDBDFF65CF2F615E660FE0[m
+[41mgpg: Good signature from "Raphael Shodi (test) <raphael.s.k@hotmail.com>" [expired][m
+[41mgpg: Note: This key has expired![m
+[41mPrimary key fingerprint: D0AA 7F0B F313 EA61 47ED  BDFF 65CF 2F61 5E66 0FE0[m
+Author: Raphael Shodi <raphael.s.k@hotmail.com>
+Date:   Mon Sep 18 01:11:09 2023 -0300
+
+    git ignore nao tinha ido
+
+[33mcommit df5a2b46fd7549ae3d449ffec46d48fcc8287cd5[m
+[41mgpg: Signature made Mon, Sep 18, 2023  1:09:08 AM    [m
+[41mgpg:                using RSA key D0AA7F0BF313EA6147EDBDFF65CF2F615E660FE0[m
+[41mgpg: Good signature from "Raphael Shodi (test) <raphael.s.k@hotmail.com>" [expired][m
+[41mgpg: Note: This key has expired![m
+[41mPrimary key fingerprint: D0AA 7F0B F313 EA61 47ED  BDFF 65CF 2F61 5E66 0FE0[m
+Author: Raphael Shodi <raphael.s.k@hotmail.com>
+Date:   Mon Sep 18 01:09:07 2023 -0300
+
+    adicionando codigo mais git ignore
+
+[33mcommit 0cf48a1b55c80018d3c814a49c882b6a26269666[m[33m ([m[1;33mtag: ep01[m[33m)[m
+[41mgpg: Signature made Mon, Sep 18, 2023 12:28:13 AM    [m
+[41mgpg:                using RSA key D0AA7F0BF313EA6147EDBDFF65CF2F615E660FE0[m
+[41mgpg: Good signature from "Raphael Shodi (test) <raphael.s.k@hotmail.com>" [expired][m
+[41mgpg: Note: This key has expired![m
+[41mPrimary key fingerprint: D0AA 7F0B F313 EA61 47ED  BDFF 65CF 2F61 5E66 0FE0[m
+Author: Raphael Shodi <raphael.s.k@hotmail.com>
+Date:   Mon Sep 18 00:28:13 2023 -0300
+
+    criando pastas
+
+[33mcommit 8f572f0f10d2d352505b4327953cdc5268a439c4[m
+[41mgpg: Signature made Sun, Sep 17, 2023 10:28:09 PM    [m
+[41mgpg:                using RSA key 4AEE18F83AFDEB23[m
+[41mgpg: Can't check signature: No public key[m
+Author: Raphael Shodi <80370866+kosh202@users.noreply.github.com>
+Date:   Sun Sep 17 22:28:09 2023 -0300
+
+    Initial commit
