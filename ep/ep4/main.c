@@ -3,64 +3,83 @@ gcc hello.c -o hello
 
 ./hello
 */
-#define FUSE_USE_VERSION 30
+
+
+#define FUSE_USE_VERSION 31
 #include <fuse.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#include "fuse_common.h"
 #include <fcntl.h>
-#include <time.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/statvfs.h>
-#include <sys/uio.h>
+#include <stdlib.h>
 
-// Adicione aqui as inclusões necessárias para manipulação de imagens BMP
+static const char *bmp_file_path = "/path/to/your/image.bmp"; // Substitua pelo caminho real do seu arquivo BMP
 
-static const char *bmp_path = "ep\ep4\kirbo.bmp";
+static int bmpfs_getattr(const char *path, struct stat *stbuf)
+{
+    int res = 0;
 
-// Adicione estruturas ou variáveis globais necessárias para armazenar pastas e arquivos
+    memset(stbuf, 0, sizeof(struct stat));
 
-static void read_bmp(const char *path) {
-    // Implemente a leitura da imagem BMP aqui
+    if (strcmp(path, "/") == 0)
+    {
+        stbuf->st_mode = S_IFDIR | 0755;
+        stbuf->st_nlink = 2;
+    }
+    else
+    {
+        // Implemente a lógica para obter atributos de arquivos aqui
+        // Use as funções da LibFuse como fuse_get_context() para obter informações do usuário atual
+        // e então preencha stbuf de acordo com o arquivo/diretório especificado
+        res = -ENOENT;
+    }
+
+    return res;
 }
 
-static int bmp_getattr(const char *path, struct stat *stbuf) {
-    // Implemente a obtenção de atributos para o BMP e os elementos armazenados nele
-    // Utilize stbuf para preencher informações sobre o arquivo ou diretório
+static int bmpfs_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
+                         off_t offset, struct fuse_file_info *fi)
+{
+    (void)offset;
+    (void)fi;
+
+    if (strcmp(path, "/") != 0)
+        return -ENOENT;
+
+    filler(buf, ".", NULL, 0);
+    filler(buf, "..", NULL, 0);
+
+    // Implemente a lógica para preencher o diretório virtual com os arquivos presentes na imagem BMP
+    // Utilize a função filler para adicionar cada arquivo/diretório ao diretório virtual
+
+    return 0;
 }
 
-static int bmp_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
-                        off_t offset, struct fuse_file_info *fi) {
-    // Implemente a leitura de diretórios
-    // Utilize filler para adicionar entradas de diretório ao buffer
+static int bmpfs_open(const char *path, struct fuse_file_info *fi)
+{
+    // Implemente a lógica para abrir um arquivo no diretório virtual
+    // Pode envolver a verificação do caminho, permissões, etc.
+
+    return 0;
 }
 
-static int bmp_open(const char *path, struct fuse_file_info *fi) {
-    // Implemente a abertura de arquivos
-    // Verifique se o arquivo existe e está acessível
+static int bmpfs_read(const char *path, char *buf, size_t size, off_t offset,
+                      struct fuse_file_info *fi)
+{
+    // Implemente a lógica para ler dados de um arquivo no diretório virtual
+    // Use a função pread() para ler dados do arquivo BMP e preencher buf
+
+    return 0; // Retorne o número de bytes lidos
 }
 
-static int bmp_read(const char *path, char *buf, size_t size, off_t offset,
-                    struct fuse_file_info *fi) {
-    // Implemente a leitura de dados de arquivos
-    // Leitura efetiva dos dados do arquivo
-}
-
-static struct fuse_operations bmp_oper = {
-    .getattr = bmp_getattr,
-    .readdir = bmp_readdir,
-    .open = bmp_open,
-    .read = bmp_read,
-    // Adicione mais operações conforme necessário
+static struct fuse_operations bmpfs_oper = {
+    .getattr = bmpfs_getattr,
+    .readdir = bmpfs_readdir,
+    .open = bmpfs_open,
+    .read = bmpfs_read,
 };
 
-int main(int argc, char *argv[]) {
-    // Leitura da imagem BMP
-    read_bmp(bmp_path);
-
-    // Inicialização do FUSE
-    return fuse_main(argc, argv, &bmp_oper, NULL);
+int main(int argc, char *argv[])
+{
+    return fuse_main(argc, argv, &bmpfs_oper, NULL);
 }
