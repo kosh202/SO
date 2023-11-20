@@ -9,3 +9,4 @@ main.c -> codigo em c
 
 =======
 uname_info -> arquivo para executar  
+
